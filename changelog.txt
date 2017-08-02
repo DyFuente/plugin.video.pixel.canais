@@ -1,0 +1,6 @@
+1.0.1 - 01/07/2017
+- Adicionado a funcao de ocultar canais iniciados com PG-
+- Imagens locais dentro do addon
+
+1.0.0
+- Addon criado e liberado para o pessoal.

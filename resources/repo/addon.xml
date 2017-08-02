@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="REPOSITORY" name="[COLOR FFFF6B00]Pixel alternative repository[/COLOR]" version="1.0.0" provider-name="josemoraes">
+    <extension point="xbmc.addon.repository" name="Pixel alternative repository">
+        <info>https://raw.githubusercontent.com/josemoraes99/kodirepo/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/josemoraes99/kodirepo/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/josemoraes99/kodirepo/raw/master/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary></summary>
+        <description>Add-ons for XBMC</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
