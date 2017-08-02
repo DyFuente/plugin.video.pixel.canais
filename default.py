@@ -38,7 +38,7 @@ url_base = 'http://www.netcombo.com.br/static/html/juntinho/components/combo_cid
 def CATEGORIAS():
 	addDir('Definir Picons dos Canais', '', 1, '', False)
 	addDir('Criar Grupos e Separar Canais', '', 2, '')
-	addDir('Oculta canais que iniciam com PG-', '', 3, '', False)
+	addDir('Ocultar canais que iniciam com PG-', '', 3, '', False)
 
 def notifyLog(message, level=xbmc.LOGDEBUG):
     xbmc.log('[%s]: %s' % (__addonid__, message.encode('utf-8')), level)
