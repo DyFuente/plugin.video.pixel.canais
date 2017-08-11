@@ -11,7 +11,7 @@
   </extension>
 	<extension point="xbmc.addon.metadata">
 	    <summary>Baseado no addon Tiabet de leandrotsampa</summary>
-	    <description>Altera os picons dos canais, oculta canais PG- e faz grupos dos canais.</description>
+	    <description>Altera os picons dos canais, oculta canais PG- e faz grupos dos canais. Se quiser personalizar com seus próprios picons, visite o site http://bit.ly/canaispixel</description>
 	    <disclaimer></disclaimer>
       <source>https://github.com/josemoraes99/plugin.video.pixel.canais</source>
       <platform>all</platform>
