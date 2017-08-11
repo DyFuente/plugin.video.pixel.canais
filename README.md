@@ -41,5 +41,5 @@ As imagens tem que ser de tamanho 220x132 e pode ser jpg ou png.
 
 Se  alterar alguma imagem e ela nao atualizar, as vezes tem que apagar a pasta /storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/Thumbnails pro kodi carregar novamente.
 
-No arquivo canaisnet.txt contém os nomes dos canais que serão ocultos na opção "Ocultar canais informativos NET"
+No arquivo canaisnet.txt contém os nomes dos canais que serão ocultos na opção "Ocultar canais informativos NET".
 
