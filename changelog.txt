@@ -1,4 +1,4 @@
-1.0.6 - naopostado
+1.0.6 - 11/08/2017
 - correcao canal discovery science
 - adicionado opcao de remover canais informativos
 - adicionado opcao de reexibir canais
