@@ -3,6 +3,7 @@
 - adicionado opcao de remover canais informativos
 - adicionado opcao de reexibir canais
 - adicionado opcao para aceitar arquivos com extensao .png
+- adicionado canais de Porto Alegre
 
 1.0.5 - 05/07/2017
 - adicionado picons de food network e de algumas radios
