@@ -1,3 +1,12 @@
+1.0.6 - naopostado
+- correcao canal discovery science
+- adicionado opcao de remover canais informativos
+- adicionado opcao de reexibir canais
+- adicionado opcao para aceitar arquivos com extensao .png
+
+1.0.5 - 05/07/2017
+- adicionado picons de food network e de algumas radios
+
 1.0.1 - 01/07/2017
 - Adicionado a funcao de ocultar canais iniciados com PG-
 - Imagens locais dentro do addon
