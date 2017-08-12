@@ -3,14 +3,15 @@ Informação
 Mosaico Multijogos
 NET
 NET (uso interno)
-NET Recomenda
+net recomenda
 NET TV
 NET TV HD
+NET1 (uso interno)
 NET2 (uso interno)
 NET3 (uso interno)
 NET4 (uso interno)
 NET5 (uso interno)
-NET6 (uso interno)
+NET6 (Uso interno)
 NET7 (uso interno)
 NOW
 Variedades

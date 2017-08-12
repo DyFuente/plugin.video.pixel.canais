@@ -8,7 +8,7 @@ Mod do addon TIABET do leandrotsampa
 - Oculta canais informativos
 
 Link para download:
-https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.0.5.zip
+https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.0.7.zip
 
 
 <h2>Instalação</h2>

@@ -181,6 +181,10 @@ def definir_picons(url):
     
     foo.close()
 
+    # Fix para o grupo favorito ser "Todos os canais"
+    # Procurar outra solucao
+    cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
+
     conn.commit()
     conn.close()
 
@@ -199,6 +203,9 @@ def remover_channels():
     for linha in canais:
         cursor.execute("""UPDATE channels SET bIsHidden = 1 WHERE sChannelName = ? """, (linha[3],))
 
+    # Fix para o grupo favorito ser "Todos os canais"
+    # Procurar outra solucao
+    cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
         
     conn.commit()
     conn.close()
@@ -244,8 +251,13 @@ def remover_canais_net():
         for canalRem in canaislist:
             canalRemStr = canalRem.decode('utf-8').strip()
             for linha in canais:
-                if canalRemStr == linha[3]:
+                if canalRemStr.lower() == linha[3].lower():
                     cursor.execute("""UPDATE channels SET bIsHidden = 1 WHERE idChannel = ? """, (linha[0],))
+                    # cursor.execute("""DELETE FROM channels WHERE idChannel=?""", (linha[0],))
+
+        # Fix para o grupo favorito ser "Todos os canais"
+        # Procurar outra solucao
+        cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
 
     conn.commit()
     conn.close()
