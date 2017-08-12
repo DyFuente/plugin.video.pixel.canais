@@ -9,6 +9,8 @@ NET TV HD
 NET2 (uso interno)
 NET3 (uso interno)
 NET4 (uso interno)
+NET5 (uso interno)
+NET6 (uso interno)
 NET7 (uso interno)
 NOW
 Variedades

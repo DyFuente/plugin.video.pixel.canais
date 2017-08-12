@@ -1,3 +1,9 @@
+1.0.7 - 11/08/2017
+- adicionado picons de canais do Rio de Janeiro
+- adicionado picons de canais de Brasilia
+- adicionado picons de radios de Porto Alegre
+- atualizado picons dos canais telecine
+
 1.0.6 - 11/08/2017
 - correcao canal discovery science
 - adicionado opcao de remover canais informativos
