@@ -1,3 +1,7 @@
+1.0.8 - 13/08/2017
+- bug fixes
+- adicionado opcao para configurar outra origem de picons(local e url)
+
 1.0.7 - 11/08/2017
 - adicionado picons de canais do Rio de Janeiro
 - adicionado picons de canais de Brasilia

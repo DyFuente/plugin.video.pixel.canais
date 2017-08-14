@@ -24,6 +24,13 @@ __addonid__ = __addon__.getAddonInfo('id')
 __path__ = __addon__.getAddonInfo('path')
 #__IconDefault__ = xbmc.translatePath(os.path.join( __path__,'resources', 'media', 'default.png'))
 
+#Defs
+__useCustomPics__ = True if __addon__.getSetting('useCustomPics').upper() == 'TRUE' else False
+__formatOfCustomPic__ = __addon__.getSetting('formatOfCustomPic').upper()
+__typeOfCustomPic__ = __addon__.getSetting('typeOfCustomPic').upper()
+__folderCust__ = __addon__.getSetting('folderCust')
+__urlCustom__ = __addon__.getSetting('urlCustom')
+
 # configure repository
 repodir = xbmc.translatePath("special://home/addons/repository.pixelalternative")
 if not os.path.exists(repodir):
@@ -41,6 +48,7 @@ url_base = 'http://www.netcombo.com.br/static/html/juntinho/components/combo_cid
 def CATEGORIAS():
     addDir('Definir Picons dos Canais', '', 1, '', False)
     addDir('Criar Grupos e Separar Canais', '', 2, '')
+    # addDir('Remover Grupos', '', 7, '', False)
     addDir('Ocultar canais que iniciam com PG-', '', 3, '', False)
     addDir('Ocultar canais informativos NET', '', 5, '', False)
     addDir('Reexibir todos os canais', '', 6, '', False)
@@ -135,6 +143,9 @@ def listar_picons():
     addDir('Xpicons (220x132)', 'http://192.168.199.194:3000/Logos/canal{0}.jpg', 3, '', False)
 
 def definir_picons(url):
+
+    xbmc.executebuiltin('ActivateWindow(busydialog)')
+
     # Obtendo canais
     TVDB = xbmc.translatePath('special://userdata/Database/TV29.db')
     conn = sqlite3.connect(TVDB)
@@ -149,44 +160,80 @@ def definir_picons(url):
     
     # Atualizando canais
     # alterando os dados da tabela
-    # notifyLog('pre update')
 
     addondata = xbmc.translatePath(__addon__.getAddonInfo('profile'))
 
     if not os.path.exists(addondata):
         os.makedirs(addondata)
+
     notfoundfile = xbmc.translatePath(os.path.join(addondata,'pics_nao_encontradas.txt'))
-    foo = open(notfoundfile, 'w')
+    notfoundF = open(notfoundfile, 'w')
+
+    listafile = xbmc.translatePath(os.path.join(addondata,'lista_de_canais.txt'))
+    listaF = open(listafile, 'w')
+
+    if __folderCust__ == '' and __useCustomPics__ and __typeOfCustomPic__ == 'LOCAL':
+        xbmc.executebuiltin('Dialog.Close(busydialog)')
+        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Caminho das imagens invalido.', 5000, __icon__))
+        quit()
+
+    if __urlCustom__ == '' and __useCustomPics__ and __typeOfCustomPic__ == 'URL':
+        xbmc.executebuiltin('Dialog.Close(busydialog)')
+        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'URL das imagens invalido.', 5000, __icon__))
+        quit()
 
     for linha in canais:
-        #icone = url.format(re.sub(re.compile('\W'), '', ''.join(c.lower() for c in unicodedata.normalize('NFKD', linha[3]).encode('ascii', 'ignore') if not c.isspace())))
-        #notifyLog(icone)
-        # icone = xbmc.translatePath(os.path.join( __path__,'resources', 'media', 'canalinformacao.jpg'))
-        # precanal = unicodedata.normalize('NFKD', linha[3]).encode('ascii', 'ignore').lower().replace(" ", "")
-        # canalclean = re.sub("[!@#$%^&*()[]{};:,./<>?\|`~-=_+]", "_", precanal)
         canalclean = re.sub(re.compile('\W'), '', ''.join(c.lower() for c in unicodedata.normalize('NFKD', linha[3].replace("+", "mais")).encode('ascii', 'ignore') if not c.isspace()))
-        canal = 'canal' + canalclean + '.jpg'
-        # icone1 = xbmc.translatePath(os.path.join( __path__,'resources', 'media', canal))
-        icone = xbmc.translatePath(os.path.join( __path__,'resources', 'media', canal))
-        if os.path.isfile(icone):
-            cursor.execute("""UPDATE channels SET bIsUserSetIcon = 1, sIconPath = ? WHERE idChannel = ? """, (icone, linha[0]))
-        else:
-            canalpng = 'canal' + canalclean + '.png'
-            iconepng = xbmc.translatePath(os.path.join( __path__,'resources', 'media', canalpng))
-            if os.path.isfile(iconepng):
-                cursor.execute("""UPDATE channels SET bIsUserSetIcon = 1, sIconPath = ? WHERE idChannel = ? """, (iconepng, linha[0]))
-            else:            
-                foo.write(canalpng + '\n')
-        # notifyLog(icone)
-    
-    foo.close()
 
-    # Fix para o grupo favorito ser "Todos os canais"
-    # Procurar outra solucao
-    cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
+        if not __useCustomPics__:
+            # local
+            icone = xbmc.translatePath(os.path.join( __path__,'resources', 'media', 'canal' + canalclean + '.png'))
+
+            # rename old addon files
+            if not os.path.exists(icone):
+                iconejpg = xbmc.translatePath(os.path.join( __path__,'resources', 'media', 'canal' + canalclean + '.jpg'))
+                if not os.path.exists(iconejpg):
+                    notfoundF.write(icone + '\n')
+                else:
+                    os.rename(iconejpg, icone)
+            # end rename old addon files
+            # end local
+        else:
+            extF = '.'+ __formatOfCustomPic__.lower()
+            if __typeOfCustomPic__ == 'URL':
+                # web 
+                urlFinal = __urlCustom__
+                if not __urlCustom__.endswith('/'):
+                    urlFinal = __urlCustom__ + "/"
+                url = urlFinal + 'canal{0}' + extF
+                icone = url.format(canalclean)
+
+                # try:
+                #     urllib2.urlopen(icone)
+                # except urllib2.HTTPError, e:
+                #     # print(e.code)
+                #     # xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'http error ' + str(e.code) + icone, 100, __icon__))
+                #     notfoundF.write(icone + '\n')
+                # end web
+            else:
+                if __folderCust__ != '':
+                    icone = xbmc.translatePath(os.path.join( __folderCust__, 'canal' + canalclean + extF))
+                    if not os.path.exists(icone):
+                        notfoundF.write(icone + '\n')
+                else:
+                    icone = ''
+
+        listaF.write(icone + "," + linha[3].encode('ascii', 'ignore') + '\n')
+        notifyLog('Alterando picon de ' + linha[3] + ' -->' + icone)
+        cursor.execute("""UPDATE channels SET bIsUserSetIcon = 1, sIconPath = ? WHERE idChannel = ? """, (icone, linha[0]))
+     
+    notfoundF.close()
+    listaF.close()
 
     conn.commit()
     conn.close()
+
+    xbmc.executebuiltin('Dialog.Close(busydialog)')
 
 def remover_channels():
     # Obtendo canais
@@ -202,10 +249,6 @@ def remover_channels():
     
     for linha in canais:
         cursor.execute("""UPDATE channels SET bIsHidden = 1 WHERE sChannelName = ? """, (linha[3],))
-
-    # Fix para o grupo favorito ser "Todos os canais"
-    # Procurar outra solucao
-    cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
         
     conn.commit()
     conn.close()
@@ -216,13 +259,6 @@ def exibir_todos_canais():
     conn = sqlite3.connect(TVDB)
     cursor = conn.cursor()
     
-    # cursor.execute("""
-    # select idChannel, bIsUserSetIcon, sIconPath, sChannelName from channels where sChannelName like "%PG-%";
-    # """)
-
-    # canais = cursor.fetchall()
-    
-    # for linha in canais:
     cursor.execute("""UPDATE channels SET bIsHidden = 0 """)
 
     conn.commit()
@@ -255,10 +291,6 @@ def remover_canais_net():
                     cursor.execute("""UPDATE channels SET bIsHidden = 1 WHERE idChannel = ? """, (linha[0],))
                     # cursor.execute("""DELETE FROM channels WHERE idChannel=?""", (linha[0],))
 
-        # Fix para o grupo favorito ser "Todos os canais"
-        # Procurar outra solucao
-        cursor.execute("""DELETE FROM channelgroups WHERE sName = 'DVB-C' """)
-
     conn.commit()
     conn.close()
 
@@ -268,6 +300,42 @@ def listar_cidades():
 
     for c in cidades[u'data']:
         addDir((c[u'label']).encode('utf-8'), (url_base % ('data/%s.json' % c[u'rel'])), 4, '', False)
+
+def remover_grupos():
+    # Obtendo canais
+    TVDB = xbmc.translatePath('special://userdata/Database/TV29.db')
+    conn = sqlite3.connect(TVDB)
+    cursor = conn.cursor()
+
+    # # excluindo canais dos grupos
+    # cursor.execute("""
+    # delete from map_channelgroups_channels where idGroup > 2;
+    # """)
+
+    # excluindo grupos
+    cursor.execute("""
+    delete from channelgroups where idGroup > 2;
+    """)
+
+    # cursor.execute("""
+    # select iLastWatched, sName from channelgroups;
+    # """)
+
+    # canais = cursor.fetchall()
+    # for canalRem in canais:
+    #     notifyLog(str(canalRem[0]) + "<-->" + canalRem[1] + "<--")
+
+    # cursor.execute("""
+    # select idChannel, idGroup, iChannelNumber, iSubChannelNumber from map_channelgroups_channels;
+    # """)
+
+    # canais = cursor.fetchall()
+    # for canalRem in canais:
+    #     notifyLog(str(canalRem[0]) + "<-->" + str(canalRem[1]) + "<-->" + str(canalRem[2]) + "<-->" + str(canalRem[3]))
+
+
+    conn.commit()
+    conn.close()
 
 def definir_grupos(url):
     # Obtendo canais
@@ -352,22 +420,26 @@ elif mode == 2:
 
 elif mode == 3:
     remover_channels()
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 7000, __icon__))
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
 
 elif mode == 1:
     definir_picons(url)
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 7000, __icon__))
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
 
 elif mode == 4:
     definir_grupos(url)
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 7000, __icon__))
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
 
 elif mode == 5:
     remover_canais_net();
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 7000, __icon__))
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
 
 elif mode == 6:
     exibir_todos_canais();
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 7000, __icon__))
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
+
+elif mode == 7:
+    remover_grupos();
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'Reinicie o KODI para aplicar as alteracoes.', 3000, __icon__))
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
