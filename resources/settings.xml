@@ -4,7 +4,7 @@
     <setting id="useCustomPics" type="bool" label="Usar picons personalizados" default="false"/>
       <setting id="formatOfCustomPic" label="Formato dos arquivos" type="labelenum" default="PNG" subsetting="true" values="png|jpg" visible="eq(-1,true)" />
       <setting id="typeOfCustomPic" label="Escolha origem" type="labelenum" default="Local" subsetting="true" values="Local|URL" visible="eq(-2,true)" />
-		<setting id="folderCust" label="Local" type="folder" default="" subsetting="true" visible="eq(-1,0)+eq(-3,true)" />
+		<setting id="folderCust" label="Caminho" type="folder" default="" subsetting="true" visible="eq(-1,0)+eq(-3,true)" />
 		<setting id="urlCustom" label="URL(com http/https)" type="text" default="" subsetting="true" visible="eq(-2,1)+eq(-4,true)" />
-
+	    <setting id="verifyURL" type="bool" label="Verificar se imagem existe no servidor (muito lento)" default="false" subsetting="true" visible="eq(-3,1)+eq(-5,true)"/>
 </settings>

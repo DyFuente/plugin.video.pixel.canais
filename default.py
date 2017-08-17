@@ -30,6 +30,7 @@ __formatOfCustomPic__ = __addon__.getSetting('formatOfCustomPic').upper()
 __typeOfCustomPic__ = __addon__.getSetting('typeOfCustomPic').upper()
 __folderCust__ = __addon__.getSetting('folderCust')
 __urlCustom__ = __addon__.getSetting('urlCustom')
+__verifyURL__ = True if __addon__.getSetting('verifyURL').upper() == 'TRUE' else False
 
 # configure repository
 repodir = xbmc.translatePath("special://home/addons/repository.pixelalternative")
@@ -165,6 +166,10 @@ def definir_picons(url):
 
     if not os.path.exists(addondata):
         os.makedirs(addondata)
+    if __useCustomPics__ and __typeOfCustomPic__ == 'LOCAL':
+        localpics = xbmc.translatePath(os.path.join(addondata,'picons'))
+        if not os.path.exists(localpics):
+            os.makedirs(localpics)
 
     notfoundfile = xbmc.translatePath(os.path.join(addondata,'pics_nao_encontradas.txt'))
     notfoundF = open(notfoundfile, 'w')
@@ -208,18 +213,23 @@ def definir_picons(url):
                 url = urlFinal + 'canal{0}' + extF
                 icone = url.format(canalclean)
 
-                # try:
-                #     urllib2.urlopen(icone)
-                # except urllib2.HTTPError, e:
-                #     # print(e.code)
-                #     # xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'http error ' + str(e.code) + icone, 100, __icon__))
-                #     notfoundF.write(icone + '\n')
-                # end web
+                if __verifyURL__:
+                    try:
+                        urllib2.urlopen(icone)
+                    except urllib2.HTTPError, e:
+                        # print(e.code)
+                        # xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__, 'http error ' + str(e.code) + icone, 100, __icon__))
+                        notfoundF.write(icone + '\n')
+                    # end web
             else:
                 if __folderCust__ != '':
-                    icone = xbmc.translatePath(os.path.join( __folderCust__, 'canal' + canalclean + extF))
-                    if not os.path.exists(icone):
-                        notfoundF.write(icone + '\n')
+                    fName = 'canal' + canalclean + extF
+                    iconeSrc = xbmc.translatePath(os.path.join( __folderCust__, fName))
+                    icone = xbmc.translatePath(os.path.join( localpics, fName))
+                    if not os.path.exists(iconeSrc):
+                        notfoundF.write(iconeSrc + '\n')
+                    else:
+                        shutil.copyfile(iconeSrc,icone)
                 else:
                     icone = ''
 

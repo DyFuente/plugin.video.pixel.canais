@@ -1,3 +1,8 @@
+1.0.9
+- bug fixes
+- adicionado opção de verificar imagem no web server (usado para gerar arquivo de imagens não encontradas)
+- pics adicionais para os canais de Londrina
+
 1.0.8 - 13/08/2017
 - bug fixes
 - adicionado opcao para configurar outra origem de picons(local e url)
