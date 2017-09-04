@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.pixel.canais"
        name="[COLOR FFFF6B00]Canais Pixel[/COLOR]"
-       version="1.0.9"
+       version="1.0.10"
        provider-name="josemoraes">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

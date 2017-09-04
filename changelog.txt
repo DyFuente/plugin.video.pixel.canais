@@ -1,3 +1,6 @@
+1.0.10
+- adicionado picon canal curta! HD
+
 1.0.9
 - bug fixes
 - adicionado opção de verificar imagem no web server (usado para gerar arquivo de imagens não encontradas)
