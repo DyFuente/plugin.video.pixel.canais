@@ -8,13 +8,13 @@ Mod do addon TIABET do leandrotsampa
 - Oculta canais informativos
 
 Link para download:
-https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.0.10.zip
+https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.0.11.zip
 
 
 <h2>Instalação</h2>
 
 - Abrir o Kodi >> Sistema >> Add-ons >> Instalar a partir de um arquivo ZIP
-- Procurar o arquivo plugin.video.pixel.canais-1.0.10.zip
+- Procurar o arquivo plugin.video.pixel.canais-1.0.11.zip
 
 <h2>Utilização</h2>
 
@@ -39,19 +39,8 @@ Copie desse arquivo os canais que faltam e coloque no grupo do Whatsapp ou no fo
 - É possível escolher entre um endereço local ou web
 - Se escolher web é necessário a url completa (incluindo http ou https)
 - As extensões dos arquivos podem sem .jpg ou .png
+- As imagens tem que ser de tamanho 220x132 e pode ser jpg ou png.
 - Os nomes dos arquivos podem ser encontrados em /storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/addon_data/plugin.video.pixel.canais/lista_de_canais.txt
-
-<h2>Se quiser customizar o add-on</h2>
-
-Para editar o addon é simples, ele é um zip, as imagens ficam em resources/media.
-
-Para completar os que faltam é só olhar no log no pixel em /storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/addon_data/plugin.video.pixel.canais/pics_nao_encontradas.txt
-
-As imagens tem que ser de tamanho 220x132 e pode ser jpg ou png.
-
-Se  alterar alguma imagem e ela nao atualizar, as vezes tem que apagar a pasta /storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/Thumbnails pro kodi carregar novamente.
-
-No arquivo canaisnet.txt contém os nomes dos canais que serão ocultos na opção "Ocultar canais informativos NET".
 
 <h2>Bugs conhecidos</h2>
 
