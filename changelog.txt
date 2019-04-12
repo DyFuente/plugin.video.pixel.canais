@@ -1,3 +1,11 @@
+1.1.2
+- ocultar canais adultos
+
+1.1.1
+- mudança de host das imagens
+- lista remota de canais internos 
+- ocultar canais sd
+
 1.0.11
 - adicionado picon canal Record HD
 - alterado a origem dos picons para web

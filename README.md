@@ -8,13 +8,13 @@ Mod do addon TIABET do leandrotsampa
 - Oculta canais informativos
 
 Link para download:
-https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.0.11.zip
+https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.1.2.zip
 
 
 <h2>Instalação</h2>
 
 - Abrir o Kodi >> Sistema >> Add-ons >> Instalar a partir de um arquivo ZIP
-- Procurar o arquivo plugin.video.pixel.canais-1.0.11.zip
+- Procurar o arquivo plugin.video.pixel.canais-1.1.2.zip
 
 <h2>Utilização</h2>
 
@@ -22,14 +22,6 @@ https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/pl
 - Escolha Canais Pixel
 - Escolha a opção desejada (pode ser mais que uma)
 - Reinicie o Kodi para aplicar
-
-<h2>Se faltar algum picon</h2>
-
-Consultar o arquivo no Media Player do Pixel:
-
-/storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/addon_data/plugin.video.pixel.canais/pics_nao_encontradas.txt
-
-Copie desse arquivo os canais que faltam e coloque no grupo do Whatsapp ou no forum
 
 <h2>Utilizar picons próprias</h2>
 
@@ -41,6 +33,12 @@ Copie desse arquivo os canais que faltam e coloque no grupo do Whatsapp ou no fo
 - As extensões dos arquivos podem sem .jpg ou .png
 - As imagens tem que ser de tamanho 220x132 e pode ser jpg ou png.
 - Os nomes dos arquivos podem ser encontrados em /storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/addon_data/plugin.video.pixel.canais/lista_de_canais.txt
+
+<h2>Se faltar algum picon</h2>
+
+Consultar o arquivo no Media Player do Pixel:
+
+/storage/emulated/0/Android/data/org.xbmc.kodi/files/.kodi/userdata/addon_data/plugin.video.pixel.canais/pics_nao_encontradas.txt
 
 <h2>Bugs conhecidos</h2>
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.pixel.canais"
        name="[COLOR FFFF6B00]Canais Pixel[/COLOR]"
-       version="1.0.11"
+       version="1.1.2"
        provider-name="josemoraes">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -15,5 +15,53 @@
 	    <disclaimer></disclaimer>
       <source>https://github.com/josemoraes99/plugin.video.pixel.canais</source>
       <platform>all</platform>
+      <news>
+1.1.2
+- ocultar canais adultos
+
+1.1.1
+- mudança de host das imagens
+- lista remota de canais internos 
+- ocultar canais sd
+
+1.0.11
+- adicionado picon canal Record HD
+- alterado a origem dos picons para web
+
+1.0.10
+- adicionado picon canal curta! HD
+
+1.0.9
+- bug fixes
+- adicionado opção de verificar imagem no web server (usado para gerar arquivo de imagens não encontradas)
+- pics adicionais para os canais de Londrina
+
+1.0.8 - 13/08/2017
+- bug fixes
+- adicionado opcao para configurar outra origem de picons(local e url)
+
+1.0.7 - 11/08/2017
+- adicionado picons de canais do Rio de Janeiro
+- adicionado picons de canais de Brasilia
+- adicionado picons de radios de Porto Alegre
+- atualizado picons dos canais telecine
+
+1.0.6 - 11/08/2017
+- correcao canal discovery science
+- adicionado opcao de remover canais informativos
+- adicionado opcao de reexibir canais
+- adicionado opcao para aceitar arquivos com extensao .png
+- adicionado canais de Porto Alegre
+
+1.0.5 - 05/07/2017
+- adicionado picons de food network e de algumas radios
+
+1.0.1 - 01/07/2017
+- Adicionado a funcao de ocultar canais iniciados com PG-
+- Imagens locais dentro do addon
+
+1.0.0
+- Addon criado e liberado para o pessoal.
+      </news>
 	</extension>
 </addon>
