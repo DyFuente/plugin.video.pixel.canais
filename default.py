@@ -281,6 +281,12 @@ def definir_picons(url):
     conn.commit()
     conn.close()
 
+    # remove thumbnails
+    thumbnailsPath = xbmc.translatePath('special://thumbnails')
+    if os.path.isdir(thumbnailsPath):
+        if os.path.exists(thumbnailsPath):
+            shutil.rmtree(thumbnailsPath)
+
     xbmc.executebuiltin('Dialog.Close(busydialog)')
 
 def cleanChannelName(ch):
