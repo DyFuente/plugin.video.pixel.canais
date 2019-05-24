@@ -8,13 +8,13 @@ Mod do addon TIABET do leandrotsampa
 - Oculta canais informativos
 
 Link para download:
-https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.1.3.zip
+https://github.com/josemoraes99/kodirepo/raw/master/plugin.video.pixel.canais/plugin.video.pixel.canais-1.1.4.zip
 
 
 <h2>Instalação</h2>
 
 - Abrir o Kodi >> Sistema >> Add-ons >> Instalar a partir de um arquivo ZIP
-- Procurar o arquivo plugin.video.pixel.canais-1.1.3.zip
+- Procurar o arquivo plugin.video.pixel.canais-1.1.4.zip
 
 <h2>Utilização</h2>
 

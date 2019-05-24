@@ -210,10 +210,11 @@ def definir_picons(url):
 
         # log( fil )
 
-        response = json.load(fil)
-        fil.close()
+        # response = json.load(fil)
+        # respListaPicons = json.loads(response)
+        respListaPicons = json.load(fil)
 
-        respListaPicons = json.loads(response)
+        fil.close()
 
         piconsList = respListaPicons['listaPicons']
 
